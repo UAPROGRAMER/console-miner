@@ -5,8 +5,6 @@
 
 namespace colors {
 
-static bool color_pairs[8][8] = {false};
-
 void setup_colors() {
     switch(global::color_palette) {
         case ColorPalette::ANSI:
@@ -35,6 +33,7 @@ void setup_colors() {
 }
 
 unsigned short get_pair(unsigned short fg, unsigned short bg) {
+    static bool color_pairs[8][8] = {false};
     if (!color_pairs[fg][bg]) {
         init_pair(8 * fg + bg, fg, bg);
         color_pairs[fg][bg] = true;
